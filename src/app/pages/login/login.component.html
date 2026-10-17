@@ -1,0 +1,38 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h2>Bookify — Iniciar Sesion</h2>
+    <p>Ingresa con tus credenciales registradas</p>
+
+    @if (errorMessage) {
+      <div class="alert-danger">
+        {{ errorMessage }}
+      </div>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <label for="username">Usuario</label>
+        <input 
+          id="username" 
+          type="text" 
+          formControlName="username" 
+          placeholder="Ej: admin" 
+          [class.input-error]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" />
+      </div>
+
+      <div class="form-field">
+        <label for="password">Contraseña</label>
+        <input 
+          id="password" 
+          type="password" 
+          formControlName="password" 
+          placeholder="••••••••" 
+          [class.input-error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" />
+      </div>
+
+      <button type="submit" [disabled]="loading" class="btn-submit">
+        {{ loading ? 'Autenticando...' : 'Iniciar Sesion' }}
+      </button>
+    </form>
+  </div>
+</div>

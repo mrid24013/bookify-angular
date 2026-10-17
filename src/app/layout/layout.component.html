@@ -1,0 +1,24 @@
+<div class="layout-container">
+    <aside class="sidebar">
+      <div class="brand">
+        <h2>Bookify</h2>
+      </div>
+      <nav class="nav-menu">
+        <a routerLink="/home" routerLinkActive="active">Inicio</a>
+        <a routerLink="/explore" routerLinkActive="active">Espacios / Disponibilidad</a>
+        <a routerLink="/settings" routerLinkActive="active">Ajustes</a>
+      </nav>
+      <button class="btn-logout" (click)="onLogout()">Cerrar Sesion</button>
+    </aside>
+  
+    <main class="main-content">
+      <header class="top-header">
+        <span>Gestion de Reservas de Espacios</span>
+        <div class="user-badge">Estado: Autenticado</div>
+      </header>
+  
+      <div class="page-body">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>

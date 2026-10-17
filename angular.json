@@ -7,11 +7,15 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "books-backlog": {
+    "bookify": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "type": "component"
+        },
+        "@schematics/angular:service": {
+          "type": "service"
         }
       },
       "root": "",
@@ -21,6 +25,9 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "polyfills": [
+              "zone.js"
+            ],
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -30,9 +37,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss"]
           },
           "configurations": {
             "production": {
@@ -53,7 +58,13 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -62,10 +73,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "books-backlog:build:production"
+              "buildTarget": "bookify:build:production"
             },
             "development": {
-              "buildTarget": "books-backlog:build:development"
+              "buildTarget": "bookify:build:development"
             }
           },
           "defaultConfiguration": "development"

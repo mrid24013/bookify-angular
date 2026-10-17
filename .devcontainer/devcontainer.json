@@ -1,7 +1,7 @@
 {
-  "name": "Books Backlog",
+  "name": "bookify",
   "dockerComposeFile": "../docker-compose.yml",
-  "service": "books-backlog",
+  "service": "bookify",
   "workspaceFolder": "/app",
   "shutdownAction": "stopCompose",
   "forwardPorts": [4200]

@@ -1,0 +1,81 @@
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+  
+    .sidebar {
+      width: 260px;
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+  
+      .brand h2 {
+        margin: 0 0 32px 0;
+        color: #10b981;
+        font-size: 1.6rem;
+      }
+  
+      .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        flex: 1;
+  
+        a {
+          color: #94a3b8;
+          text-decoration: none;
+          padding: 12px 16px;
+          border-radius: 8px;
+          font-weight: 500;
+          transition: all 0.2s ease;
+  
+          &:hover, &.active {
+            background-color: #1e293b;
+            color: #ffffff;
+          }
+        }
+      }
+  
+      .btn-logout {
+        background-color: #ef4444;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+    }
+  
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #f8fafc;
+  
+      .top-header {
+        height: 64px;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+  
+        .user-badge {
+          background-color: #d1fae5;
+          color: #065f46;
+          padding: 4px 12px;
+          border-radius: 12px;
+          font-size: 0.8rem;
+          font-weight: 600;
+        }
+      }
+  
+      .page-body {
+        padding: 24px;
+        flex: 1;
+      }
+    }
+  }
