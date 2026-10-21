@@ -1,1 +1,58 @@
-<p>home works!</p>
+<div class="home-page">
+  <div class="header-section">
+    <div>
+      <h2>Home</h2>
+    </div>
+  </div>
+
+  <!-- Tarjetas de conteos -->
+  <div class="metrics-grid">
+    <div class="metric-card total">
+      <span class="label">Total Espacios</span>
+      <span class="value">{{ totalEspacios }}</span>
+    </div>
+    <div class="metric-card liberados">
+      <span class="label">Disponibles</span>
+      <span class="value">{{ totalLiberados }}</span>
+    </div>
+    <div class="metric-card ocupados">
+      <span class="label">Ocupados</span>
+      <span class="value">{{ totalOcupados }}</span>
+    </div>
+  </div>
+
+  <!-- Tarjetas de Espacios -->
+  <div class="espacios-grid">
+    @for (item of espaciosEstatus; track item.id) {
+      <div class="status-card" [class]="item.estatusActual.toLowerCase()">
+        <div class="card-header">
+          <h3>{{ item.nombre }}</h3>
+        </div>
+
+        <p class="description">{{ item.descripcion }}</p>
+        <p class="capacity"><strong>Capacidad:</strong> {{ item.capacidad }} personas</p>
+
+        <div class="status-details">
+          @if (item.estatusActual === 'OCUPADO' && item.reservaActual) {
+            <div class="info-box occupied-box">
+              <p class="box-title">Espacio en Uso</p>
+              <p><strong>Horario:</strong> {{ item.reservaActual.hora_inicio }} - {{ item.reservaActual.hora_fin }}</p>
+            </div>
+          } @else if (item.estatusActual === 'LIBERADO') {
+            <div class="info-box free-box">
+              <p class="box-title">Espacio Disponible</p>
+            </div>
+          } @else {
+            <div class="info-box inactive-box">
+              <p>Espacio fuera de servicio o inhabilitado.</p>
+            </div>
+          }
+        </div>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <p>No hay espacios registrados en el sistema.</p>
+      </div>
+    }
+  </div>
+</div>

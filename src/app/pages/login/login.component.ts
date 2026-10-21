@@ -20,24 +20,16 @@ export class LoginComponent {
     username: ['', [Validators.required]],
     password: ['', [Validators.required]]
   });
-  loading = false;
 
   onSubmit(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
     }
-    this.loading = true;
     
     this.authService.login(this.loginForm.value).subscribe({
       next: (res) => {
-        console.log('Login exitoso:', res);
-        this.loading = false;
-        this.router.navigate(['/explore']);
-      },
-      error: (err) => {
-        this.loading = false;
-        console.error('Error:', err);
+        this.router.navigate(['/home']);
       }
     });
   }

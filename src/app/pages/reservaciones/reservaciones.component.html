@@ -1,0 +1,77 @@
+<div class="reservaciones-page">
+  <h2>Reservaciones</h2>
+
+  <!-- Formulario para crear / editar -->
+  <div class="card-form">
+    <form [formGroup]="reservaForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="field">
+          <label for="espacio">Espacio</label>
+          <select id="espacio" formControlName="espacio">
+            <option value="" disabled>Selecciona un espacio</option>
+            @for (espacio of espacios; track espacio.id) {
+              <option [value]="espacio.id">{{ espacio.nombre }} (Cap: {{ espacio.capacidad }})</option>
+            }
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="fecha">Fecha</label>
+          <input id="fecha" type="date" formControlName="fecha" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="hora_inicio">Hora Inicio</label>
+          <input id="hora_inicio" type="time" formControlName="hora_inicio" />
+        </div>
+
+        <div class="field">
+          <label for="hora_fin">Hora Fin</label>
+          <input id="hora_fin" type="time" formControlName="hora_fin" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="reservaForm.invalid" class="btn-primary">
+          {{ isEditing ? 'Actualizar Reservacion' : 'Crear Reservacion' }}
+        </button>
+        @if (isEditing) {
+          <button type="button" (click)="resetForm()" class="btn-secondary">Cancelar</button>
+        }
+      </div>
+    </form>
+  </div>
+
+  <!-- Tabla de datos retornados del backend -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Espacio</th>
+          <th>Fecha</th>
+          <th>Horario</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of reservas; track item.id || $index) {
+          <tr>
+            <td><strong>{{ getNombreEspacio(item.espacio, item.espacio_nombre) }}</strong></td>
+            <td>{{ item.fecha }}</td>
+            <td>{{ item.hora_inicio }} - {{ item.hora_fin }}</td>
+            <td>
+              <button (click)="onEdit(item)" class="btn-edit">Editar</button>
+              <button (click)="onDelete(item.id)" class="btn-delete">Borrar</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="empty-cell">No hay reservaciones.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

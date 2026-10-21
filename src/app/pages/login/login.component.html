@@ -1,14 +1,8 @@
 <div class="login-wrapper">
   <div class="login-card">
-    <h2>Bookify — Iniciar Sesion</h2>
-    <p>Ingresa con tus credenciales registradas</p>
+    <h2>Iniciar Sesion</h2>
 
-    @if (errorMessage) {
-      <div class="alert-danger">
-        {{ errorMessage }}
-      </div>
-    }
-
+    <!-- formulario para login -->
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-field">
         <label for="username">Usuario</label>
@@ -30,9 +24,8 @@
           [class.input-error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" />
       </div>
 
-      <button type="submit" [disabled]="loading" class="btn-submit">
-        {{ loading ? 'Autenticando...' : 'Iniciar Sesion' }}
-      </button>
+      <!-- Boton de confirmacion -->
+      <button type="submit" class="btn-submit"> Iniciar Sesion </button>
     </form>
   </div>
 </div>

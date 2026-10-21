@@ -4,10 +4,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem('token');
 
   if (token) {
-    const authHeader = token.startsWith('Bearer ') || token.startsWith('Token ') 
-      ? token 
-      : `Bearer ${token}`;
-
+    //Maneja el token de inicio de sesion
+    const authHeader = token.startsWith('Token') ? token : `Token ${token}`;
     const cloned = req.clone({
       setHeaders: {
         Authorization: authHeader

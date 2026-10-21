@@ -1,0 +1,76 @@
+<div class="espacios-page">
+  <h2>Espacios</h2>
+
+  <!-- Formulario para crear / editar -->
+  <div class="card-form">
+    <form [formGroup]="espacioForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="field">
+          <label for="nombre">Nombre del Espacio</label>
+          <input id="nombre" type="text" formControlName="nombre" placeholder="Ej: Sala A" />
+        </div>
+
+        <div class="field">
+          <label for="capacidad">Capacidad</label>
+          <input id="capacidad" type="number" formControlName="capacidad" min="1" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" rows="2" formControlName="descripcion"></textarea>
+      </div>
+
+      <div class="field-checkbox">
+        <input id="activo" type="checkbox" formControlName="activo" />
+        <label for="activo">Espacio Habilitado</label>
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="espacioForm.invalid" class="btn-primary">
+          {{ isEditing ? 'Actualizar Espacio' : 'Guardar Espacio' }}
+        </button>
+        @if (isEditing) {
+          <button type="button" (click)="resetForm()" class="btn-secondary">Cancelar</button>
+        }
+      </div>
+    </form>
+  </div>
+
+  <!-- Tabla de datos retornados del backend -->
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Capacidad</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of espacios; track item.id || $index) {
+          <tr>
+            <td><strong>{{ item.nombre }}</strong></td>
+            <td>{{ item.descripcion || 'Sin descripción' }}</td>
+            <td>{{ item.capacidad }} pers.</td>
+            <td>
+              <span [class]="item.activo ? 'badge active' : 'badge inactive'">
+                {{ item.activo ? 'ACTIVO' : 'INACTIVO' }}
+              </span>
+            </td>
+            <td>
+              <button (click)="onEdit(item)" class="btn-edit">Editar</button>
+              <button (click)="onDelete(item.id)" class="btn-delete">Borrar</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="empty-cell">No hay espacios registrados en la base de datos.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

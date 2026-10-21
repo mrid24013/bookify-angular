@@ -1,0 +1,163 @@
+.reservaciones-page {
+  padding: 32px 40px;
+  max-width: 1600px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  h2 {
+    color: #0f172a;
+    font-size: 1.85rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  // Formulario
+  .card-form {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    margin-bottom: 32px;
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+
+      @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 18px;
+
+      label {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #475569;
+        margin-bottom: 6px;
+      }
+
+      input, select, textarea {
+        padding: 12px 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        background-color: #ffffff;
+        width: 100%;
+        box-sizing: border-box;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+          outline: none;
+          border-color: #10b981;
+        }
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+
+      button {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &.btn-primary {
+          background-color: #10b981;
+          color: #ffffff;
+          &:disabled { background-color: #94a3b8; cursor: not-allowed; }
+        }
+
+        &.btn-secondary {
+          background-color: #64748b;
+          color: #ffffff;
+        }
+      }
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+
+        button { width: 100%; }
+      }
+    }
+
+    @media (max-width: 480px) {
+      padding: 20px;
+    }
+  }
+
+  // Tabla
+  .table-wrapper {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px;
+
+    .loading-text, .empty-cell {
+      text-align: center;
+      color: #64748b;
+      padding: 24px;
+      font-size: 1rem;
+    }
+
+    table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 16px 14px;
+        text-align: left;
+        border-bottom: 1px solid #f1f5f9;
+        font-size: 0.95rem;
+      }
+
+      th {
+        background-color: #f8fafc;
+        color: #475569;
+        font-weight: 700;
+      }
+
+      .badge {
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 700;
+
+        &.confirmada { background-color: #d1fae5; color: #065f46; }
+        &.pendiente { background-color: #fef3c7; color: #92400e; }
+        &.cancelada { background-color: #fee2e2; color: #991b1b; }
+      }
+
+      .btn-edit, .btn-delete {
+        padding: 8px 14px;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        margin-right: 6px;
+        transition: opacity 0.2s ease;
+      }
+
+      .btn-edit { background-color: #3b82f6; color: #ffffff; }
+      .btn-delete { background-color: #ef4444; color: #ffffff; }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+}

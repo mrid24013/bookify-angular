@@ -11,6 +11,8 @@ services:
       - .:/app
       - /app/node_modules
 
+  #environment agregado para solucionar inestabilidad con la inicializacion del contenedor 
+  # y la funcionalidad de ver los cambios en tiempo real.
     environment:
       - CHOKIDAR_USEPOLLING=true
       - WATCHPACK_POLLING=true

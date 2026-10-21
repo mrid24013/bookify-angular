@@ -14,6 +14,7 @@
         margin: 0 0 32px 0;
         color: #10b981;
         font-size: 1.6rem;
+        font-weight: 600;
       }
   
       .nav-menu {
@@ -29,11 +30,6 @@
           border-radius: 8px;
           font-weight: 500;
           transition: all 0.2s ease;
-  
-          &:hover, &.active {
-            background-color: #1e293b;
-            color: #ffffff;
-          }
         }
       }
   
